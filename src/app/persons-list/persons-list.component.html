@@ -1,0 +1,23 @@
+<div class="container pt-5 pb-5">
+      <div class="pb-5">
+        <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">
+          <i class="fa fa-user-plus"></i> Create new person
+        </button>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let person of listofPersons">
+        <div class="col" (click)="editPersonDetails(person.id)">
+          <div class="card">
+            <div class="avatar-content">
+              <img src="{{person.avatar}}" class="card-img-top" alt="{{person.avatar}}">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Name: {{person.name}}</p>
+              <p class="card-text">Email: {{person.email}}</p>
+              <p class="card-text">Age: {{person.dob | age:person.dob}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+</div>

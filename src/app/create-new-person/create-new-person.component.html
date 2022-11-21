@@ -1,0 +1,66 @@
+<div class="modal-header">
+	<h5 class="modal-title ml-auto pl-5" id="exampleModalLabel">
+		<span>{{header}}</span>
+  </h5>
+  <button type="button" class="close pull-right" (click)="onClose()" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body mt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 bg-align p-0">
+        <div class="jumbotron pb-0">
+          <form name="form" [formGroup]="form">
+               <!-- Upload image -->
+               <div class="group-gap">
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                  </div>
+                  <div class="avatar-preview">
+                    <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                    </div>
+                  </div>
+                </div>
+              </div>
+  <button class="btn btn-danger btn-lg btn-block" (click)="fileInput.click()" style="width: 100%;">Upload Image</button>
+            <div class="form-group">
+              <label for="firstName">Name</label>
+              <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}" required />
+              <div class="invalid-feedback">
+                <div>First Name is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}"/>
+              <div *ngIf="form.get('email').touched && form.get('email').invalid"  class="invalid-feedback">
+                <div *ngIf="form.get('email').errors['required']">Email Name is required</div>
+                <div *ngIf="form.get('email').errors['email']">Email must be a valid email Address</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input type="date" formControlName="dob" class="form-control" [ngClass]="{'is-invalid':form.get('dob').touched && form.get('dob').invalid}"/>
+              <div class="invalid-feedback">
+                <div>Date of Birth is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" class="form-control" formControlName="country" [ngClass]="{'is-invalid':form.get('country').touched && form.get('country').invalid}" required />
+              <div class="invalid-feedback">
+                <div>Country Name is required</div>
+              </div>
+            </div>
+            <div class="form-group modal-footer d-flex justify-content-end m-3">
+              <button class="btn btn-primary" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+              <button class="btn btn-primary">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
